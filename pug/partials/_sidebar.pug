@@ -23,18 +23,5 @@ button.sidebar-button(v-on:click="toggleDrawer" v-bind:class=" {active: sidebarV
       span.label There's more info in the
       span.indent
         a(href="https://github.com/AhoyLemon/greatsex.tips#readme" target="_blank" rel="noopener" onclick="sendEvent('outside link', 'GitHub Repo', 'https://github.com/AhoyLemon/greatsex.tips')") GitHub repository
-    li
-      span.label Thoughts?
-      span.indent
-        a(href="https://goo.gl/forms/e1fJU67sQdC3BIrn1" rel="noopener" target="_blank") Let us know
-    li#AddToHomeScreen(v-if="device")
-      span.label By the way, you should
-      span.indent 
-        a(v-on:click="addToHomescreen = true")
-          span(v-if="(device == 'android') || (device == 'ios')") add to home screen
-          span(v-else-if="(browser == 'ie') || (browser == 'edge')") pin to start
-          span(v-else-if="device == 'chrome'") add to shelf
-          span(v-else-if="browser == 'chrome'") add to desktop
-          span(v-else-if="(device == 'mac') || (browser == 'firefox') || (browser == 'opera') || (browser == 'vivaldi')") bookmark this
           
 include _homescreen-help.pug
