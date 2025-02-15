@@ -1,11 +1,11 @@
 .javascripts
   if testing
-    script(src="js/libraries/vue.full.js")
+    script(src=siteURL+"/js/libraries/vue.full.js")
   else
-    script(src="js/libraries/vue.min.js")
+    script(src=siteURL+"/js/libraries/vue.min.js")
   
-  script(src="js/libraries/html2canvas.min.js")
-  script(src="js/libraries/canvas2image.js")
+  script(src=siteURL+"/js/libraries/html2canvas.min.js")
+  script(src=siteURL+"/js/libraries/canvas2image.js")
 
   script(type="text/javascript").
     const siteURL = #{siteURL}
@@ -21,7 +21,7 @@
     ga('create', 'UA-15129990-28', 'auto');
     ga('send', 'pageview');
 
-  script(src="js/min/tips.min.js?lastUpdated="+lastUpdated)
+  script(src=siteURL+"/js/min/tips.min.js?lastUpdated="+lastUpdated)
   
 
   // Service Worker
