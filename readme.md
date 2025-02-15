@@ -1,4 +1,4 @@
-![greatsex.tips](https://ahoylemon.github.io/greatsex.tips/svg/logo-wide.svg)
+![greatsex.tips](https://sextips.ahoylemon.xyz/svg/logo-wide.svg)
 # He'll *love* what you do to him.
 
 ### So what's this?

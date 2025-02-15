@@ -6,14 +6,16 @@ var blowjobs = [
     "Give him a blowjob to remember:",
     "The Best Blowjob He's Ever Had:",
     "A super-secret oral tip from us:",
-    "This blowjob is 💯:"
+    "This blowjob is 💯:",
+    "Want to learn the perfect oral? Here it is: "
   ],
   " ",
   [
     "While his penis is in your mouth",
     "With his penis in your mouth",
     "As you suck on his penis",
-    "With the head of his penis in your mouth"
+    "With the head of his penis in your mouth",
+    "After his penis is in your mouth"
   ],
   ", ",
   [

@@ -1,4 +1,4 @@
-const cacheName = 'v2.01';
+const cacheName = 'v2.06';
 const offlineUrl = '/index.html';
 const offlineFiles = [
   '/index.html',
