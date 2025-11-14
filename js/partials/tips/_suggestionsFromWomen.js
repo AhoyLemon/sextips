@@ -55,7 +55,7 @@ var suggestionsFromWomen = [
         "“Gotta Go Cum”, where we read our favorite Sonic erotic fan fictions.",
         "“98.6% Intangible”, where we talk about challenge coins for 8 hours.",
         "“Savage Love”, where we list things we love about Fred Savage.",
-        "“Welcum to Spermvale”, our serial about an radio announcers sexy adventures in a strange town."
+        "“Welcum to Spermvale”, our serial about an radio announcer's sexy adventures in a strange town."
       ]
     ],
     "we watch unboxing videos together.",
