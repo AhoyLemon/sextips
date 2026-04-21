@@ -18,4 +18,4 @@ The images are sourced from [Unsplash](https://unsplash.com) and [Pexels](https:
 5. [canvas2image](https://github.com/hongru/canvas2image)
 
 ### I have something I want to say about this website.
-**If you're the coding type**, you should probably [subscribe to the project](https://github.com/AhoyLemon/greatsex.tips/subscription) and [follow Lemon](https://github.com/AhoyLemon) on GitHub. You can [fork this project](https://github.com/AhoyLemon/greatsex.tips/fork) if you like, but if you put in a [pull request](https://github.com/AhoyLemon/greatsex.tips/pull/new/master), know that your jokes will be looked over and (probably) edited.
+**If you're the coding type**, you should probably [subscribe to the project](https://github.com/AhoyLemon/sextips/subscription) and [follow Lemon](https://github.com/AhoyLemon) on GitHub. You can [fork this project](https://github.com/AhoyLemon/sextips/fork) if you like, but if you put in a [pull request](https://github.com/AhoyLemon/sextips/pull/new/master), know that your jokes will be looked over and (probably) edited.
