@@ -1,3 +1,5 @@
+@use "variables" as vars;
+
 @mixin background($size:cover, $position:center, $repeat:no-repeat) {
    background-size:$size; background-position:$position; background-repeat:$repeat;
 }
@@ -21,20 +23,20 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3000000', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-@mixin filter($filter-type,$filter-amount) { 
+@mixin filter($filter-type,$filter-amount) {
   filter: $filter-type+unquote('(#{$filter-amount})');
 }
 
 @mixin flex-container($direction:row, $wrap:wrap, $align:stretch) {
   display: -webkit-box; display: -webkit-flex; display: -moz-flex;display: -ms-flexbox; display: flex;
   flex-direction: $direction;
-  -webkit-flex-wrap:$wrap; -moz-flex-wrap:$wrap; 
+  -webkit-flex-wrap:$wrap; -moz-flex-wrap:$wrap;
   flex-wrap: $wrap;
-  @if $align == flex-start { 
+  @if $align == flex-start {
     -webkit-box-align: start; -ms-flex-align: start;
-  } @else if $align == flex-end { 
+  } @else if $align == flex-end {
     -webkit-box-align: end; -ms-flex-align: end;
-  } @else { 
+  } @else {
     -webkit-box-align: $align; -ms-flex-align: $align;
   }
   align-items: $align;
@@ -89,11 +91,11 @@
   transform: skew($x, $y);
 }
 
-@mixin transition($property: all, $duration: 0.3s, $animation: ease, $delay:0s) { 
+@mixin transition($property: all, $duration: 0.3s, $animation: ease, $delay:0s) {
   transition: $property $duration $animation $delay;
 }
 @mixin scale($ratio) {
-  transform: scale($ratio); 
+  transform: scale($ratio);
 }
 
 @mixin position($type, $top:null, $right:null, $bottom:null, $left:null) {
@@ -114,9 +116,9 @@
 
 @mixin respond-to($media) {
   @if $media == desktop {
-    @media only screen and (min-width: $desktop-min) { @content; }
+    @media only screen and (min-width: vars.$desktop-min) { @content; }
   }
   @else if $media == mobile {
-    @media only screen and (max-width: $mobile-max) { @content; }
+    @media only screen and (max-width: vars.$mobile-max) { @content; }
   }
 }

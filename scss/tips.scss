@@ -1,15 +1,11 @@
-//GLOBALS, GET DEFAULTS
-@import "globals/_reset";
-@import "globals/_variables";
-@import "globals/_mixins";
-@import "globals/_extends";
-@import "globals/_z-index";
+// GLOBALS, GET DEFAULTS
+@use "globals/reset";
+@use "globals/extends";
 
 // SITE SPECIFIC
-@import "partials/_fonts";
-@import "partials/_variables";
-@import "partials/_defaults";
-@import "partials/_main";
-@import "partials/_sidebar"; 
-@import "partials/_share";
-@import "partials/_banner";
+@use "partials/fonts";
+@use "partials/defaults";
+@use "partials/main";
+@use "partials/sidebar";
+@use "partials/share";
+@use "partials/banner";

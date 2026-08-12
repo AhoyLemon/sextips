@@ -1,3 +1,4 @@
+@use "../globals/variables" as vars;
 
 // SERIF
 @font-face {
@@ -8,7 +9,7 @@
 @font-face {
   font-family: 'Lora';
   src: url('../fonts/lora/bold.woff') format('woff');
-  font-weight:$bold;
+  font-weight:vars.$bold;
   font-display: swap;
 }
 @font-face {
