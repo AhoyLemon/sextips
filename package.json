@@ -14,6 +14,7 @@
     "watch:pug": "bun scripts/watch-pug.ts",
     "watch:ts": "tsc -p tsconfig.build.json --watch",
     "dev": "bun scripts/dev.ts",
+    "post:bluesky": "bun scripts/post-tip.ts",
     "serve": "browser-sync start --server --files \"*.html, css/*.css, js/min/**/*.js\" --no-notify --no-open",
     "test:sass": "sass scss/tips.scss --no-source-map --style=compressed > /dev/null",
     "test:ts": "tsc --noEmit",
@@ -31,5 +32,8 @@
     "sass": "^1.69.5",
     "typescript": "^5.3.3",
     "vue": "^3.4.0"
+  },
+  "dependencies": {
+    "@atproto/api": "^0.20.39"
   }
 }
