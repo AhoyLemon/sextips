@@ -1,0 +1,32 @@
+name: Post to BlueSky
+
+on:
+  schedule:
+    - cron: "*/45 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: post-bluesky
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun ci
+
+      - name: Post tip to BlueSky
+        run: bun run post:bluesky
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
