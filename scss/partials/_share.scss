@@ -1,26 +1,31 @@
+@use "../globals/variables" as vars;
+@use "../globals/mixins" as mix;
+@use "../globals/z-index" as z;
+@use "variables" as pvars;
+
 $z-imageBuilderText: 3;
 
 ////////////
 // Image Builder
-.image-builder { position: absolute; top:0; left: 0; z-index:$z-image-builder;
+.image-builder { position: absolute; top:0; left: 0; z-index:z.$z-image-builder;
   //&.hidden { display: none; }
   figure { background-size:cover; position: relative; background-position: center; position: relative; width:900px; }
-  .coversheet { @include position(absolute,0,0,0,0); background-color:#622927; opacity: 0.83; }
-  h3 { @include position(absolute,20px,null,null,0);
-    span { border:3px solid rgba($black,0.5); border-left:none; box-shadow: none; padding:0.35em 0.65em; }
+  .coversheet { @include mix.position(absolute,0,0,0,0); background-color:#622927; opacity: 0.83; }
+  h3 { @include mix.position(absolute,20px,null,null,0);
+    span { border:3px solid rgba(vars.$black,0.5); border-left:none; box-shadow: none; padding:0.35em 0.65em; }
   }
   .share-text { position: relative; }
   .tip-headline, .share-text, .learn-more, img.logo { z-index:$z-imageBuilderText; }
-  figcaption { min-height: 470px; @include flex-center(); padding:70px 25px 25px 25px; position: relative; color:$white; text-shadow: 2px 2px 4px $black; font-family: $serif; text-align: center; font-size:46px; border:3px solid rgba($black,0.5); }
-  h4 { @include position(absolute,null,0,0); background:rgba($black,0.8); color:$white; font-family:$sans-serif; padding:0.5em 1.25em; font-size:20px; text-align: right;
-    .url { color:$yellow; display: inline; }
+  figcaption { min-height: 470px; @include mix.flex-center(); padding:70px 25px 25px 25px; position: relative; color:vars.$white; text-shadow: 2px 2px 4px vars.$black; font-family: pvars.$serif; text-align: center; font-size:46px; border:3px solid rgba(vars.$black,0.5); }
+  h4 { @include mix.position(absolute,null,0,0); background:rgba(vars.$black,0.8); color:vars.$white; font-family:pvars.$sans-serif; padding:0.5em 1.25em; font-size:20px; text-align: right;
+    .url { color:vars.$yellow; display: inline; }
   }
-  .logo { display: inline-block; width:30px; height: 30px; @include position(absolute,null,null,8px,8px); opacity: 0.7; }
+  .logo { display: inline-block; width:30px; height: 30px; @include mix.position(absolute,null,null,8px,8px); opacity: 0.7; }
 }
 
 
 @media screen and (max-width:900px) {
-  .image-builder { 
+  .image-builder {
     figure { width: 90vw; }
     .share-text { font-size:8vw; padding-top: 0.5em; padding-bottom: 1em;}
     figcaption { min-height: 90vw;}
@@ -29,28 +34,28 @@ $z-imageBuilderText: 3;
 
 ////////////
 // Share Modal
-.share { @include position(fixed,0,0,0,0); background-color:rgba($black,0.92); z-index:$z-share; display: none;
+.share { @include mix.position(fixed,0,0,0,0); background-color:rgba(vars.$black,0.92); z-index:z.$z-share; display: none;
   canvas { max-width: 100%; }
   .inner { max-width: 900px; }
-  .share-screen { @include flex-center(); height: 100%; }
-  .share-caption { font-family: $serif; color:$white; font-size:1.25em; text-align: center; margin-top: 1em; }
+  .share-screen { @include mix.flex-center(); height: 100%; }
+  .share-caption { font-family: pvars.$serif; color:vars.$white; font-size:1.25em; text-align: center; margin-top: 1em; }
   &.visible { display: block; }
-  .close-share { @include position(fixed,5px,17px); display: block;
+  .close-share { @include mix.position(fixed,5px,17px); display: block;
     svg { width:50px; height:50px;
-      * { fill:$yellow; }
+      * { fill:vars.$yellow; }
     }
     .fill { opacity: 0; }
-    &:hover { 
+    &:hover {
       .fill { opacity: 1; }
-      .x { fill:$black; }
+      .x { fill:vars.$black; }
     }
   }
   .button-holder { padding-top: 1em; text-align: center; }
-  button { color:$yellow; background:transparent; border:1px solid $yellow; display: inline-block; padding: 0.35em 1.35em; cursor: pointer;
-    &.download { font-family: $serif; font-weight: 600; font-size:1.5em; padding: 0.25 1em; }
+  button { color:vars.$yellow; background:transparent; border:1px solid vars.$yellow; display: inline-block; padding: 0.35em 1.35em; cursor: pointer;
+    &.download { font-family: pvars.$serif; font-weight: 600; font-size:1.5em; padding: 0.25 1em; }
     &.swap { width:14em; }
-    &:hover { background: $yellow; color:$black; }
-    &[disabled] { color:rgba($white,0.5); background:transparent; border-color:currentColor; }
+    &:hover { background: vars.$yellow; color:vars.$black; }
+    &[disabled] { color:rgba(vars.$white,0.5); background:transparent; border-color:currentColor; }
   }
 }
 

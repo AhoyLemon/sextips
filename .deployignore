@@ -1,0 +1,24 @@
+# Deployment Exclusions
+# This file is documentation only -- it is not read by any build tool.
+# It exists to describe what scripts/stage-pages.ts excludes from the
+# deployed Pages artifact. See scripts/stage-pages.ts for the actual
+# (denylist-based) enforcement.
+
+ts/
+scss/
+pug/
+scripts/
+routes/
+tests/
+node_modules/
+tsconfig.json
+tsconfig.build.json
+package.json
+package-lock.json
+bun.lock
+.gitignore
+.deployignore
+readme.md
+.git/
+.github/
+_site/

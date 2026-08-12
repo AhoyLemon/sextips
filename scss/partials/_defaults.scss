@@ -1,9 +1,11 @@
+@use "../globals/variables" as vars;
+
 * { box-sizing: border-box; }
 //html { font-size:$font-size; }
-body { background-color:$black; color:$copy;  }
+body { background-color:vars.$black; color:vars.$copy;  }
 img { max-width: 100%; height: auto; }
-a { cursor: pointer; color:$link; }
-b, strong { font-weight: $bold; }
+a { cursor: pointer; color:vars.$link; }
+b, strong { font-weight: vars.$bold; }
 h1 { font-size:2.5em; }
 h2 { font-size:2em; }
 h3 { font-size:1.75em; }
@@ -11,16 +13,16 @@ h4 { font-size:1.5em; }
 h5 { font-size:1.25em; }
 h6 { font-size:1em; }
 h1, h2, h3, h4, h5, h6 { line-height: 105%; }
-ul { padding-left: 1.5em; 
+ul { padding-left: 1.5em;
   li { list-style-type: disc; }
 }
 [v-cloak] { display: none !important; }
 
-@media (min-width: $desktop-min) {
+@media (min-width: vars.$desktop-min) {
   .mobile-only { display: none; }
 }
 
-@media (max-width: $mobile-max) {
+@media (max-width: vars.$mobile-max) {
   .desktop-only { display: none; }
 }
 
