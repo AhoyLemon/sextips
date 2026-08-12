@@ -1,0 +1,35 @@
+{
+  "name": "sextips",
+  "version": "1.0.0",
+  "description": "Great Sex Tips! A randomly generated sex tip generator.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:sass": "sass scss/tips.scss:css/tips.css --no-source-map --style=compressed",
+    "build:pug": "bun scripts/build-pug.ts",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build": "bun run build:sass && bun run build:pug && bun run build:ts",
+    "build:pages": "bun run build && bun scripts/stage-pages.ts",
+    "watch:sass": "sass scss/tips.scss:css/tips.css --no-source-map --watch",
+    "watch:pug": "bun scripts/watch-pug.ts",
+    "watch:ts": "tsc -p tsconfig.build.json --watch",
+    "dev": "bun scripts/dev.ts",
+    "serve": "browser-sync start --server --files \"*.html, css/*.css, js/min/**/*.js\" --no-notify --no-open",
+    "test:sass": "sass scss/tips.scss:css/tips.css --no-source-map --style=compressed",
+    "test:ts": "tsc --noEmit",
+    "test:unit": "bun test tests",
+    "test": "bun run test:sass && bun run test:ts && bun run test:unit"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.14",
+    "@types/node": "^20.10.0",
+    "browser-sync": "^3.0.2",
+    "chalk": "^5.3.0",
+    "chokidar": "^3.6.0",
+    "ora": "^8.0.1",
+    "pug": "^3.0.2",
+    "sass": "^1.69.5",
+    "typescript": "^5.3.3",
+    "vue": "^3.4.0"
+  }
+}
