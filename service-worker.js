@@ -1,8 +1,8 @@
-const cacheName = 'v2.06';
+const cacheName = 'v2.07';
 const offlineUrl = '/index.html';
 const offlineFiles = [
   '/index.html',
-  '/manifest.json',
+  '/site.webmanifest',
   '/css/tips.css',
   '/js/libraries/vue.full.js',
   '/js/libraries/vue.min.js',
