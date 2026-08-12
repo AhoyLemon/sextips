@@ -15,7 +15,7 @@
     "watch:ts": "tsc -p tsconfig.build.json --watch",
     "dev": "bun scripts/dev.ts",
     "serve": "browser-sync start --server --files \"*.html, css/*.css, js/min/**/*.js\" --no-notify --no-open",
-    "test:sass": "sass scss/tips.scss:css/tips.css --no-source-map --style=compressed",
+    "test:sass": "sass scss/tips.scss --no-source-map --style=compressed > /dev/null",
     "test:ts": "tsc --noEmit",
     "test:unit": "bun test tests",
     "test": "bun run test:sass && bun run test:ts && bun run test:unit"
