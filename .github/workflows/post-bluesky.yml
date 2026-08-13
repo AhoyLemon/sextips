@@ -2,7 +2,12 @@ name: Post to BlueSky
 
 on:
   schedule:
-    - cron: "*/45 * * * *"
+    # BEGIN AUTO-GENERATED SCHEDULE (updated daily by scripts/reschedule-bluesky.ts — do not hand-edit)
+    - cron: "39 16 * * *"
+    - cron: "47 22 * * *"
+    - cron: "7 1 * * *"
+    - cron: "42 4 * * *"
+    # END AUTO-GENERATED SCHEDULE
   workflow_dispatch:
 
 concurrency:
@@ -18,6 +23,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.WORKFLOW_PAT }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -30,3 +37,31 @@ jobs:
         env:
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+
+      # Only a `schedule` trigger carries github.event.schedule — a manual
+      # workflow_dispatch run always posts (above) and never reschedules.
+      - name: Determine whether this was the day's last scheduled slot
+        id: last_slot
+        if: github.event_name == 'schedule'
+        run: |
+          LAST_CRON=$(awk '/BEGIN AUTO-GENERATED SCHEDULE/,/END AUTO-GENERATED SCHEDULE/' .github/workflows/post-bluesky.yml \
+            | grep -oP '(?<=cron: ")[^"]+' | tail -n1)
+          echo "Last committed slot: $LAST_CRON — this run: ${{ github.event.schedule }}"
+          if [ "$LAST_CRON" = "${{ github.event.schedule }}" ]; then
+            echo "is_last=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_last=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Reschedule tomorrow's posting window
+        if: steps.last_slot.outputs.is_last == 'true'
+        run: bun scripts/reschedule-bluesky.ts
+
+      - name: Commit and push tomorrow's schedule
+        if: steps.last_slot.outputs.is_last == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/post-bluesky.yml
+          git commit -m "Reschedule BlueSky posting window for tomorrow"
+          git push
