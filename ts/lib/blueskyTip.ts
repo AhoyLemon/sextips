@@ -1,5 +1,6 @@
 import { generateTip, type SexActs } from "./tipGenerator.js";
 import { graphemeLength } from "./graphemes.js";
+import { convertTipHtmlForBluesky } from "./tipHtml.js";
 
 export interface GenerateBlueskyTipOptions {
   maxGraphemes?: number;
@@ -17,7 +18,7 @@ export function generateBlueskyTip(sexActs: SexActs, opts: GenerateBlueskyTipOpt
   const { maxGraphemes = 300, maxAttempts = 20, rng = Math.random } = opts;
 
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const tip = generateTip(sexActs, rng);
+    const tip = convertTipHtmlForBluesky(generateTip(sexActs, rng));
     if (graphemeLength(tip) <= maxGraphemes) return tip;
   }
 
