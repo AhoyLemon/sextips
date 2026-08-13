@@ -38,27 +38,31 @@ jobs:
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
 
-      # Only a `schedule` trigger carries github.event.schedule — a manual
+      # always() so a failed post doesn't also skip rescheduling — otherwise
+      # tomorrow's window would silently never get generated. Only a
+      # `schedule` trigger carries github.event.schedule — a manual
       # workflow_dispatch run always posts (above) and never reschedules.
       - name: Determine whether this was the day's last scheduled slot
         id: last_slot
-        if: github.event_name == 'schedule'
+        if: always() && github.event_name == 'schedule'
+        env:
+          THIS_SCHEDULE: ${{ github.event.schedule }}
         run: |
           LAST_CRON=$(awk '/BEGIN AUTO-GENERATED SCHEDULE/,/END AUTO-GENERATED SCHEDULE/' .github/workflows/post-bluesky.yml \
             | grep -oP '(?<=cron: ")[^"]+' | tail -n1)
-          echo "Last committed slot: $LAST_CRON — this run: ${{ github.event.schedule }}"
-          if [ "$LAST_CRON" = "${{ github.event.schedule }}" ]; then
+          echo "Last committed slot: $LAST_CRON — this run: $THIS_SCHEDULE"
+          if [ "$LAST_CRON" = "$THIS_SCHEDULE" ]; then
             echo "is_last=true" >> "$GITHUB_OUTPUT"
           else
             echo "is_last=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Reschedule tomorrow's posting window
-        if: steps.last_slot.outputs.is_last == 'true'
+        if: always() && steps.last_slot.outputs.is_last == 'true'
         run: bun scripts/reschedule-bluesky.ts
 
       - name: Commit and push tomorrow's schedule
-        if: steps.last_slot.outputs.is_last == 'true'
+        if: always() && steps.last_slot.outputs.is_last == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

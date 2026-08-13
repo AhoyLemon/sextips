@@ -41,6 +41,30 @@ describe("drawScheduledSlots", () => {
   });
 });
 
+describe("drawScheduledSlots across a real DST transition", () => {
+  test("fall-back (Nov 1, 2026): the last bucket stays monotonic across the 1am-1:59am fold", () => {
+    // Window anchored Oct 31 (10am) has its last bucket (22:00-02:00) straddle
+    // the fold, where 1:00-1:59am Chicago occurs twice (once CDT, once CST).
+    const start = drawScheduledSlots({ year: 2026, month: 10, day: 31 }, () => 0)[3];
+    const nearTop = drawScheduledSlots({ year: 2026, month: 10, day: 31 }, () => 0.999)[3];
+
+    expect(start.utc.toISOString()).toBe("2026-11-01T03:00:00.000Z");
+    // Resolves the ambiguous local time to its pre-transition (CDT) reading —
+    // a deterministic choice, not a crash or NaN — and stays later than the
+    // bucket's start, i.e. no backwards jump across the fold.
+    expect(nearTop.utc.toISOString()).toBe("2026-11-01T06:59:00.000Z");
+    expect(nearTop.utc.getTime()).toBeGreaterThan(start.utc.getTime());
+  });
+
+  test("spring-forward (Mar 8, 2026): the last bucket never lands in the skipped 2am-2:59am gap", () => {
+    // Window anchored Mar 7 (10am) has its last bucket (22:00-02:00) approach
+    // the spring-forward gap (2:00am-2:59am Chicago doesn't exist that day),
+    // but the bucket's own range tops out at 1:59am, never reaching it.
+    const nearTop = drawScheduledSlots({ year: 2026, month: 3, day: 7 }, () => 0.999)[3];
+    expect(nearTop.utc.toISOString()).toBe("2026-03-08T07:59:00.000Z");
+  });
+});
+
 describe("chicagoCalendarDate", () => {
   test("returns the Chicago-local date for a UTC instant late in the Chicago evening", () => {
     // 2026-01-15 23:00 UTC = 2026-01-15 17:00 CST — still the same Chicago day.

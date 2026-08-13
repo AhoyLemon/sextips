@@ -38,7 +38,7 @@ async function main(): Promise<void> {
 
   const tip = generateBlueskyTip(sexActs);
   if (!tip) {
-    const message = "Could not generate a tip under the grapheme limit within the attempt cap; skipping this tick.";
+    const message = "Could not generate a tip under the grapheme limit within the attempt cap; skipping this run.";
     console.warn(message);
     console.log(`::warning title=BlueSky: skipped::${escapeForWorkflowCommand(message)}`);
     appendSummary(`## ⚠️ Skipped — tip generation exhausted its attempt cap\n\nEvery generated tip exceeded the 300-grapheme limit.`);
