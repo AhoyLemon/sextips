@@ -85,7 +85,7 @@ export const danceForHim: TipCategory = [
     `and sway your hips to displace the creamed corn`,
     `and start dancing on a disconnected DDR mat`,
     `while running a rented jackhammer`,
-    `and reenact the entirety of <i>Bring It On</>`,
+    `and reenact the entirety of <i>Bring It On</i>`,
     `while spraying whipped cream wildly in the air`,
     `and bust out of the life-sized pinata of yourself`,
     `while spinning live snakes like nunchucks`,
