@@ -3,10 +3,10 @@ name: Post to BlueSky
 on:
   schedule:
     # BEGIN AUTO-GENERATED SCHEDULE (updated daily by scripts/reschedule-bluesky.ts — do not hand-edit)
-    - cron: "9 16 * * *"
-    - cron: "13 22 * * *"
-    - cron: "26 1 * * *"
-    - cron: "15 5 * * *"
+    - cron: "29 16 * * *"
+    - cron: "14 21 * * *"
+    - cron: "10 1 * * *"
+    - cron: "50 3 * * *"
     # END AUTO-GENERATED SCHEDULE
   workflow_dispatch:
 
